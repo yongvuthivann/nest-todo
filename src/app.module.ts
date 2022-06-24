@@ -2,6 +2,8 @@ import { Module } from '@nestjs/common';
 import { TodosModule } from "./todos/todos.module";
 import { ConfigModule, ConfigService } from "@nestjs/config";
 import { MongooseModule } from "@nestjs/mongoose";
+import { UsersModule } from "./users/users.module";
+import { AuthModule } from "./auth/auth.module";
 
 
 @Module({
@@ -16,7 +18,9 @@ import { MongooseModule } from "@nestjs/mongoose";
         uri: config.get<string>('MONGODB_URI')
       })
     }),
-    TodosModule
+    TodosModule,
+    UsersModule,
+    AuthModule
   ],
   controllers: [],
   providers: [],

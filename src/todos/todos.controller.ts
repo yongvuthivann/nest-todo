@@ -1,7 +1,8 @@
-import { Controller, Param, Patch, Delete, Get, Post, Body } from "@nestjs/common";
+import { Controller, Param, Patch, Delete, Get, Post, Body, UseGuards } from "@nestjs/common";
 import { TodosService } from "./todos.service";
 import { CreateTodoDto } from "./dtos/create-todo.dto";
 import { UpdateTodoDto } from "./dtos/update-todo.dto";
+import { JwtGuard } from "../auth/Guards/jwt.guard";
 
 
 @Controller('todos')
@@ -20,6 +21,7 @@ export class TodosController {
     return todos
   }
 
+  @UseGuards(JwtGuard)
   @Get(':id')
   async getTodo(@Param('id') id: string): Promise<CreateTodoDto>{
     const todo = await this.todosService.findOne(id)

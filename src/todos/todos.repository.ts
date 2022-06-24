@@ -29,6 +29,7 @@ export class TodosRepository {
     if (todo.todo) {
       updateTodo.todo = todo.todo
     }
+    updateTodo.save()
     return updateTodo
   }
 
